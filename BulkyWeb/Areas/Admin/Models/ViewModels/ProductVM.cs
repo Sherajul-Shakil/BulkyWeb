@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BulkyWeb.Models.ViewModels
+namespace BulkyWeb.Areas.Admin.Models.ViewModels
 {
     public class ProductVM
     {

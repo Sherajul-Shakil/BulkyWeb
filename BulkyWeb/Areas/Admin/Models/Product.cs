@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
-namespace BulkyWeb.Models
+namespace BulkyWeb.Areas.Admin.Models
 {
     public class Product
     {
@@ -47,6 +47,6 @@ namespace BulkyWeb.Models
         [ValidateNever]
         public Category Category { get; set; }
         [ValidateNever]
-        public string ImageUrl{ get; set; } 
+        public string ImageUrl { get; set; }
     }
 }

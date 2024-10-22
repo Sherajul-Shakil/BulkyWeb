@@ -1,4 +1,4 @@
-﻿using BulkyWeb.Models;
+﻿using BulkyWeb.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BulkyWeb.Models
+namespace BulkyWeb.Areas.Admin.Models
 {
     public class Category
     {
