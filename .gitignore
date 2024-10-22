@@ -1,2 +1,5 @@
 bin/
 obj/
+.vs/
+# return one flder and ignore .vs folder
+
