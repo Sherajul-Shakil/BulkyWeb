@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BulkyWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241020034123_AddCategoryData")]
-    partial class AddCategoryData
+    [Migration("20241022084834_InitialCreateWithIdentity")]
+    partial class InitialCreateWithIdentity
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace BulkyWeb.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("BulkyWeb.Models.Category", b =>
+            modelBuilder.Entity("BulkyWeb.Areas.Admin.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -63,6 +63,142 @@ namespace BulkyWeb.Migrations
                             Id = 3,
                             DisplayOrder = 3,
                             Name = "History"
+                        });
+                });
+
+            modelBuilder.Entity("BulkyWeb.Areas.Admin.Models.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ISBN")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ListPrice")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price100")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Price50")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Author = "Billy Spark",
+                            CategoryId = 1,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "SWD9999001",
+                            ImageUrl = "",
+                            ListPrice = 99.0,
+                            Price = 90.0,
+                            Price100 = 80.0,
+                            Price50 = 85.0,
+                            Title = "Fortune of Time"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Author = "Nancy Hoover",
+                            CategoryId = 1,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "CAW777777701",
+                            ImageUrl = "",
+                            ListPrice = 40.0,
+                            Price = 30.0,
+                            Price100 = 20.0,
+                            Price50 = 25.0,
+                            Title = "Dark Skies"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Author = "Julian Button",
+                            CategoryId = 1,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "RITO5555501",
+                            ImageUrl = "",
+                            ListPrice = 55.0,
+                            Price = 50.0,
+                            Price100 = 35.0,
+                            Price50 = 40.0,
+                            Title = "Vanish in the Sunset"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Author = "Abby Muscles",
+                            CategoryId = 2,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "WS3333333301",
+                            ImageUrl = "",
+                            ListPrice = 70.0,
+                            Price = 65.0,
+                            Price100 = 55.0,
+                            Price50 = 60.0,
+                            Title = "Cotton Candy"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Author = "Ron Parker",
+                            CategoryId = 2,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "SOTJ1111111101",
+                            ImageUrl = "",
+                            ListPrice = 30.0,
+                            Price = 27.0,
+                            Price100 = 20.0,
+                            Price50 = 25.0,
+                            Title = "Rock in the Ocean"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Author = "Laura Phantom",
+                            CategoryId = 3,
+                            Description = "Praesent vitae sodales libero. Praesent molestie orci augue, vitae euismod velit sollicitudin ac. Praesent vestibulum facilisis nibh ut ultricies.\r\n\r\nNunc malesuada viverra ipsum sit amet tincidunt. ",
+                            ISBN = "FOT000000001",
+                            ImageUrl = "",
+                            ListPrice = 25.0,
+                            Price = 23.0,
+                            Price100 = 20.0,
+                            Price50 = 22.0,
+                            Title = "Leaves and Wonders"
                         });
                 });
 
@@ -211,10 +347,12 @@ namespace BulkyWeb.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("nvarchar(max)");
@@ -251,10 +389,12 @@ namespace BulkyWeb.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(128)
+                        .HasColumnType("nvarchar(128)");
 
                     b.Property<string>("Value")
                         .HasColumnType("nvarchar(max)");
@@ -262,6 +402,17 @@ namespace BulkyWeb.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("BulkyWeb.Areas.Admin.Models.Product", b =>
+                {
+                    b.HasOne("BulkyWeb.Areas.Admin.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

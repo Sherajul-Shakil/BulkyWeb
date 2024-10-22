@@ -3,14 +3,15 @@ using BulkyWeb.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using System.Data;
 using BulkyWeb.Areas.Admin.Models.ViewModels;
 using BulkyWeb.Areas.Admin.Models;
+using BulkyWeb.Utility;
 
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
