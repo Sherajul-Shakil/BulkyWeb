@@ -21,9 +21,16 @@
                             <label asp-for="Product.Title" class="ms-2"></label>
                             <span asp-validation-for="Product.Title" class="text-danger"></span>
                         </div>
-                        <div class="py-2 col-12">
+                        @* <div class="py-2 col-12">
                             <label asp-for="Product.Description" class="ms-2 text-muted"></label>
                             <textarea asp-for="Product.Description" class="form-control border-0 shadow"></textarea>
+                        </div> *@
+
+                        <div class="py-2 col-12">
+                            <label asp-for="Product.Description" class="ms-2 text-muted"></label>
+                            <div id="quillEditor" class="form-control border-0 shadow" style="min-height: 300px;"></div>
+                            <input type="hidden" asp-for="Product.Description" id="descriptionInput" />
+                            <span asp-validation-for="Product.Description" class="text-danger"></span>
                         </div>
 
                         <div class="form-floating py-2 col-12">
@@ -106,12 +113,46 @@
 
 @section Scripts{
     <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+        $(document).ready(function () {
+            // Initialize Quill editor
+            var quill = new Quill('#quillEditor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+                        [{ 'font': [] }],
+                        [{ 'size': ['small', false, 'large', 'huge'] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        ['blockquote', 'code-block'],
+                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ 'script': 'sub' }, { 'script': 'super' }],
+                        [{ 'indent': '-1' }, { 'indent': '+1' }],
+                        [{ 'direction': 'rtl' }],
+                        [{ 'color': [] }, { 'background': [] }],
+                        [{ 'align': [] }],
+                        ['clean']
+                    ]
+                },
+                formats: [
+                    'header', 'font', 'size',
+                    'bold', 'italic', 'underline', 'strike',
+                    'blockquote', 'code-block',
+                    'list', 'script', 'indent',
+                    'direction', 'color', 'background',
+                    'align'
+                ],
+                placeholder: '',
+            });
+
+            quill.on('text-change', function () {
+                var cleanHtml = quill.root.innerHTML.replace(/<p><br><\/p>/g, '');
+                $("#descriptionInput").val(cleanHtml);
+            });
+
+            quill.root.innerHTML = $("#descriptionInput").val();
         });
     </script>
+
     @{
     <partial name="_ValidationScriptsPartial"/>
     }
