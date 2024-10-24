@@ -82,6 +82,14 @@ namespace BulkyWeb.Areas.Admin.Controllers
 
                     productVM.Product.ImageUrl = @"\images\product\" + fileName;
                 }
+                else
+                {
+                    if (string.IsNullOrEmpty(productVM.Product.ImageUrl))
+                    {
+                        productVM.Product.ImageUrl = "";
+
+                    }
+                }
 
                 if (productVM.Product.Id == 0)
                 {
